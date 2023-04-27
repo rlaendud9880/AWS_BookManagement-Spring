@@ -69,13 +69,13 @@ public class BookController {
 		return ResponseEntity.ok().body(bookService.getRentalListByBookId(bookId));
 	}
 	
-//	@PostMapping("/book/${bookId}/rental/${bookListId}")
-//	public ResponseEntity<?> rentalBook(){
-//		return ResponseEntity.ok().body(null);
-//	}
-//	
-//	@DeleteMapping("/book/${bookId}/rental/${bookListId}")
-//	public ResponseEntity<?> returnBook(){
-//		return ResponseEntity.ok().body(null);
-//	}
+	@PostMapping("/book/rental/{bookListId}")
+	public ResponseEntity<?> rentalBook(@PathVariable int bookListId, @RequestBody Map<String, Integer> requestMap){
+		return ResponseEntity.ok().body(bookService.rentalBook(bookListId, requestMap.get("userId")));
+	}
+	
+	@DeleteMapping("/book/rental/{bookListId}")
+	public ResponseEntity<?> returnBook(@PathVariable int bookListId, int userId){
+		return ResponseEntity.ok().body(bookService.rentalBook(bookListId, userId));
+	}
 }
